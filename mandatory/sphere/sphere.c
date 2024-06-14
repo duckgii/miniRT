@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:14:02 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/13 20:57:37 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/14 23:57:29 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ t_sphere	*init_sphere(t_point center, double radius)
 	return (sp);
 }
 
-double	hit_sphere(t_object *world, t_ray *ray, t_hit_record *rec)
+double	hit_sphere(t_object *sp_obj, t_ray *ray, t_hit_record *rec)
 
 {
+	//t_sphere	*sp;
 	t_vec		oc;
 	double		a;
 	double		half_b;
@@ -38,7 +39,7 @@ double	hit_sphere(t_object *world, t_ray *ray, t_hit_record *rec)
 	double		root;
 	t_sphere	*sp;
 
-	sp = (t_sphere *)world->element;
+	sp = sp_obj->element;
 	oc = vec_minus_vec(ray->orig, sp->center);
 	a = vec_len_square(ray->dir);
 	half_b = vec_inner_pro(oc, ray->dir);
@@ -55,6 +56,7 @@ double	hit_sphere(t_object *world, t_ray *ray, t_hit_record *rec)
 		if (root < rec->tmin || root > rec->tmax)
 			return (FALSE);
 	}
+	rec->reflect = sp_obj->reflect;
 	rec->t = root;
 	rec->point = ray_at(ray, root);
 	rec->normal = vec_div(vec_minus_vec(rec->point, sp->center), sp->radius);

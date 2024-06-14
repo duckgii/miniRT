@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:56:55 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/13 23:46:55 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/15 03:31:53 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,41 @@ void	print_color(t_color *color, int pixel_x, int pixel_y, t_vars *vars)
 	blue = (int)((color->z) * (255.999));
 	num = red + green + blue;
 	my_mlx_pixel_put(vars, pixel_x, pixel_y, num);
+}
+
+t_scene	*scene_init(void)
+{
+	t_scene		*scene;
+	t_object	*world;
+	t_object	*lights;
+	double		ka;
+
+	scene = malloc(sizeof(t_scene));
+	if (scene == NULL)
+		exit(1);
+	scene->canvas = canvas_init(1000, 1000);
+	scene->camera = camera_init(&scene->canvas, make_point(0, 0, 0));
+	world = object(SP, init_sphere(make_point(-2, 0, -5), 2), make_color(0.5, 0, 0));
+	object_add(&world, object(SP, init_sphere(make_point(0, -1000, 0), 995), make_color(1, 1, 1)));
+	object_add(&world, object(SP, init_sphere(make_point(2, 0, -5), 2), make_color(0, 0.5, 0)));
+	scene->world = world;
+	lights = object(LIGHT_POINT, light_point(make_point(0, 20, 0), make_color(1, 1, 1), 0.5), make_color(0, 0, 0));
+	scene->light = lights;
+	ka = 0.1;
+	scene->ambient = vec_mult_scal(make_color(1, 1, 1), ka);
+	return (scene);
+	//scene->camera = camera_init(&scene->canvas, make_point(0, 0, 0));
+    //world = object(SP, init_sphere(make_point(-2, 0, -5), 2), make_color(0.5, 0, 0)); // world 에 구1 추가
+    /* * * * 추가 * * * */
+    //object_add(&world, object(SP, init_sphere(make_point(0, -1000, 0), 995), make_color(1, 1, 1))); // world 에 구3 추가
+    /* * * * 추가 끝 * * * */
+    //object_add(&world, object(SP, init_sphere(make_point(2, 0, -5), 2), make_color(0, 0.5, 0))); // world 에 구2 추가
+    //scene->world = world;
+    /* * * * 추가 * * * */
+    //lights = object(LIGHT_POINT, light_point(make_point(0, 20, 0), make_color(1, 1, 1), 0.5), make_color(0, 0, 0)); // 더미 albedo
+    /* * * * 추가 끝 * * * */
+    //scene->light = lights;
+    return (scene);
 }
 
 int	main(void)
@@ -54,29 +89,31 @@ void	prt_pixel(t_vars *vars)
 	double	x_weight;
 	double	y_weight;
 	t_color	pixel_color;
-	t_canvas	canv;
-	t_camera	cam;
-	t_ray		ray;
-	t_object	*world;
+	//t_canvas	canv;
+	//t_camera	cam;
+	//t_ray		ray;
+	//t_object	*world;
+	t_scene	*scene;
 
-	world = NULL;
-	canv = canvas_init(1000, 1000);
-	cam = camera_init(&canv, make_point(0, 0, 0));
-	world = object(SP, init_sphere(make_point(-2, 0, -5), 2));
-	object_add(&world, object(SP, init_sphere(make_point(2, 0, -5), 2)));
-	object_add(&world, object(SP, init_sphere(make_point(0, -1000, 0), 990)));
+	//world = NULL;
+	//canv = canvas_init(1000, 1000);
+	//cam = camera_init(&canv, make_point(0, 0, 0));
+	//world = object(SP, init_sphere(make_point(-2, 0, -5), 2));
+	//object_add(&world, object(SP, init_sphere(make_point(2, 0, -5), 2)));
+	//object_add(&world, object(SP, init_sphere(make_point(0, -1000, 0), 990)));
+	scene = scene_init();
 	pixel_y = - 1;
 	//printf("%f %f %f\n", cam.left_bottom.x, cam.left_bottom.y, cam.left_bottom.z);
 	//printf("%f %f %f\n", cam.orig.x, cam.orig.y, cam.orig.z);
-	while (++pixel_y < canv.height)
+	while (++pixel_y < scene->canvas.height)
 	{
 		pixel_x = -1;
-		while (++pixel_x < canv.width)
+		while (++pixel_x < scene->canvas.width)
 		{
-			x_weight = (double)pixel_x / (canv.width - 1);
-			y_weight = 1 - (double)pixel_y / (canv.height - 1);
-			ray = ray_primary(&cam, x_weight, y_weight);
-			pixel_color = ray_color(&ray, world);
+			x_weight = (double)pixel_x / (scene->canvas.width - 1);
+			y_weight = 1 - (double)pixel_y / (scene->canvas.height - 1);
+			scene->ray = ray_primary(&scene->camera, x_weight, y_weight);
+			pixel_color = ray_color(scene);
 			print_color(&pixel_color, pixel_x, pixel_y, vars);
 		}
 	}

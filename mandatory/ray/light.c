@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit.h                                              :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 22:17:14 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/15 00:16:48 by yeoshin          ###   ########.fr       */
+/*   Created: 2024/06/14 23:06:31 by yeoshin           #+#    #+#             */
+/*   Updated: 2024/06/14 23:08:59 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HIT_H
-# define HIT_H
+#include "ray.h"
 
-# include "../structor.h"
+t_light	*light_point(t_point light_origin, t_color light_color, double bright_ratio)
+{
+	t_light	*light;
 
-t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec);
-t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec);
-t_hit_record	record_init(void);
-
-#endif
+	light = malloc(sizeof(t_light));
+	if (light == NULL)
+		exit(1);
+	light->origin = light_origin;
+	light->light_color = light_color;
+	light->bright_ratio = bright_ratio;
+	return (light);
+}

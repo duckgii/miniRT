@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:43:10 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/13 23:46:43 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/15 01:55:53 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,17 @@ t_ray	ray_primary(t_camera *cam, double x_weight, double y_weight)
 	return (ray);
 }
 
-t_color	ray_color(t_ray *r, t_object *world)
+t_color	ray_color(t_scene *scene)
 {
 	double			t;
-	//t_vec			n;
-	t_hit_record	rec;
+	//t_hit_record	rec;
 
-	rec.tmin = 0;
-	rec.tmax = INFINITY;
-	if (hit(world, r, &rec))
-		return (vec_mult_scal(vec_plus_vec(rec.normal, \
-		make_color(1, 1, 1)), 0.5));
-	t = 0.5 * (r->dir.y + 1.0);
+	scene->rec = record_init();
+	if (hit(scene->world, &scene->ray, &scene->rec))
+		return (phong_lighting(scene));
+		//return (vec_mult_scal(vec_plus_vec(rec.normal, \
+		//make_color(1, 1, 1)), 0.5));
+	t = 0.5 * (scene->ray.dir.y + 1.0);
 	return (vec_plus_vec(vec_mult_scal(make_color(1, 1, 1), (1.0 - t)), \
 	vec_mult_scal(make_color(0.5, 0.7, 1.0), t)));
 }

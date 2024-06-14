@@ -18,7 +18,10 @@ VEC_OBJS = $(VEC:.c=.o)
 
 RAY_DIR = ./mandatory/ray/
 RAY_SRCS = cam.c\
-			ray.c
+			ray.c\
+			light.c \
+			phong_light.c\
+			shadow.c
 RAY = $(addprefix $(RAY_DIR),$(RAY_SRCS))
 RAY_OBJS = $(RAY:.c=.o)
 

@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit.h                                              :+:      :+:    :+:   */
+/*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 22:17:14 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/15 00:16:48 by yeoshin          ###   ########.fr       */
+/*   Created: 2024/06/15 02:40:48 by yeoshin           #+#    #+#             */
+/*   Updated: 2024/06/15 02:53:58 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HIT_H
-# define HIT_H
+#include "ray.h"
+#include "../hit/hit.h"
 
-# include "../structor.h"
+t_bool	in_shadow(t_object *objs, t_ray light_ray, double light_len)
+{
+	t_hit_record	rec;
 
-t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec);
-t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec);
-t_hit_record	record_init(void);
+	rec.tmin = 0;
+	rec.tmax = light_len;
 
-#endif
+	if (hit(objs, &light_ray, &rec))
+		return (TRUE);
+	return (FALSE);
+}

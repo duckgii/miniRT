@@ -6,12 +6,21 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:16:52 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/13 20:51:11 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/15 00:16:27 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sphere/sphere.h"
 #include "hit.h"
+
+t_hit_record	record_init(void)
+{
+	t_hit_record	record;
+
+	record.tmin = EPSILON;
+	record.tmax = INFINITY;
+	return (record);
+}
 
 t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
 {
