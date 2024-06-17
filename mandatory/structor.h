@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:47:57 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/15 02:38:44 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/17 13:45:25 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_vec
 
 typedef struct s_vec	t_point;
 typedef struct s_vec	t_color;
-typedef	struct s_light	t_light;
+typedef struct s_light	t_light;
 
 typedef struct s_ray
 {
@@ -114,6 +114,5 @@ typedef struct s_scene
 	t_ray			ray;
 	t_hit_record	rec;
 }	t_scene;
-
 
 #endif

@@ -3,7 +3,8 @@ CFLAGS = -Imlx -Wall -Wextra -Werror
 NAME = miniRT
 
 SRCS_DIR = ./mandatory/
-SRCS_SRCS = main.c
+SRCS_SRCS = main.c\
+			utile.c
 SRCS = $(addprefix $(SRCS_DIR),$(SRCS_SRCS))
 SRCS_OBJS = $(SRCS:.c=.o)
 
