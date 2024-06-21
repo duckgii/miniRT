@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:47:57 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/17 13:45:25 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/19 01:07:56 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ typedef int	t_bool;
 
 typedef int	t_object_type;
 # define SP 0
-# define LIGHT_POINT 1
+# define PL 1
+# define LIGHT_POINT 2
+
 
 # define EPSILON 1e-6
 # define LUMEN 3
@@ -88,6 +90,12 @@ typedef struct s_sphere
 	double		radius;
 	double		radius_square;
 }	t_sphere;
+
+typedef struct s_plane
+{
+	t_vec	plane_vec;
+	double	constant;
+}	t_plane;
 
 typedef struct s_light
 {

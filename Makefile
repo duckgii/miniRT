@@ -28,7 +28,8 @@ RAY_OBJS = $(RAY:.c=.o)
 
 SPHERE_DIR = ./mandatory/sphere/
 SPHERE_SRCS = sphere.c \
-				object.c
+				object.c \
+				plane.c
 SPHERE = $(addprefix $(SPHERE_DIR),$(SPHERE_SRCS))
 SPHERE_OBJS = $(SPHERE:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:56:55 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/17 13:42:58 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/21 14:44:32 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ t_scene	*scene_init(void)
 	scene->camera = camera_init(&scene->canvas, make_point(0, 0, 0));
 	world = object(SP, init_sphere(make_point(-2, 0, -5), 2), \
 	make_color(0.5, 0, 0));
-	object_add(&world, object(SP, init_sphere(make_point(0, -1000, 0), 995), \
-	make_color(0, 0.5, 0.5)));
+	object_add(&world, object(PL, init_plane(make_point(0, -2, 0), \
+	make_vec(0, 1, 0)), make_color(0, 0.5, 0.5)));
 	object_add(&world, object(SP, init_sphere(make_point(2, 0, -5), 2), \
 	make_color(0, 0.5, 0)));
 	scene->world = world;

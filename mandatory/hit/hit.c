@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 22:16:52 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/15 00:16:27 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/19 01:16:08 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 	hit_result = FALSE;
 	if (world->type == SP)
 		hit_result = hit_sphere(world, ray, rec);
+	else if (world->type == PL)
+		hit_result = hit_plane(world, ray, rec);
 	return (hit_result);
 }
