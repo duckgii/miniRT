@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:43:10 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/17 04:46:45 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/24 15:40:56 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ t_color	ray_color(t_scene *scene)
 
 	scene->rec = record_init();
 	if (hit(scene->world, &scene->ray, &scene->rec))
-		return (phong_lighting(scene));
+		return (scene->rec.reflect);
+		//return (phong_lighting(scene));
 	t = 0.5 * (scene->ray.dir.y + 1.0);
 	return (vec_plus_vec(vec_mult_scal(make_color(1, 1, 1), (1.0 - t)), \
 	vec_mult_scal(make_color(0.5, 0.7, 1.0), t)));

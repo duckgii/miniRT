@@ -6,11 +6,21 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:56:53 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/10 14:19:35 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/24 16:19:31 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+
+double	point_to_point(t_point p1, t_point p2)
+{
+	double	len;
+
+	len = sqrt((p1.x - p2.x) * (p1.x - p2.x) + \
+				(p1.y - p2.y) * (p1.y - p2.y) + \
+				(p1.z - p2.z) * (p1.z - p2.z));
+	return (len);
+}
 
 double	vec_len_square(t_vec vec)
 {
@@ -47,4 +57,9 @@ t_vec	vec_min(t_vec vec1, t_vec vec2)
 	if (vec1.z > vec2.z)
 		vec1.z = vec2.z;
 	return (vec1);
+}
+
+void	print_point(t_vec v)
+{
+	printf("%f %f %f\n", v.x, v.y, v.z);
 }

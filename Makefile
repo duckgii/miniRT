@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Imlx -Wall -Wextra -Werror 
+CFLAGS = -Imlx #-Wall -Wextra -Werror 
 NAME = miniRT
 
 SRCS_DIR = ./mandatory/

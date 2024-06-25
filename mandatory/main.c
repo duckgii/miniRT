@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:56:55 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/21 22:57:45 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/24 22:42:22 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ t_scene	*scene_init(void)
 		exit(1);
 	scene->canvas = canvas_init(WIDTH, HEIGHT);
 	scene->camera = camera_init(&scene->canvas, make_point(0, 0, 0));
-	world = object(SP, init_sphere(make_point(-2, 0, -5), 2), \
-	make_color(0.5, 0, 0));
 	//world = object(SP, init_sphere(make_point(-2, 0, -5), 2), \
 	//make_color(0.5, 0, 0));
-	world = object(PL, init_plane(make_point(0, -2, 0), \
-	make_vec(0, 1, 0)), make_color(0, 0.5, 0.5));
+	//world = object(SP, init_sphere(make_point(-2, 0, -5), 2), \
+	//make_color(0.5, 0, 0));
+	//world = object(PL, init_plane(make_point(0, -2, 0), \
+	//make_vec(0, 1, 0)), make_color(0, 0.5, 0.5));
 	//object_add(&world, object(PL, init_plane(make_point(0, -2, 0), \
 	//make_vec(0, 1, 0)), make_color(0, 0.5, 0.5)));
 	//object_add(&world, object(SP, init_sphere(make_point(2, 0, -5), 2), \
 	//make_color(0, 0.5, 0)));
-	object_add(&world, object(SY, init_cylinder(make_vec(1, 1, 1), make_point(0, 0, -5), 4, 2), \
-	make_color(0, 0.5, 0)));
+	object_add(&world, object(SY, init_cylinder(make_vec(0, 1, 0), make_point(0, 0, -5), 2, 2), \
+	make_color(0, 0.5, 0.5)));
 	//world = object(SY, init_cylinder(make_vec(1, 1, 1), make_point(0, 0, -5), 1, 2), \
 	//make_color(0, 0.5, 0));
 	scene->world = world;

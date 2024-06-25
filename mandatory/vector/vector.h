@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:33:11 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/11 19:49:55 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/24 16:19:37 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ t_vec	vec_minus_scal(t_vec vec, double x, double y, double z);
 t_vec	vec_mult_vec(t_vec vec1, t_vec vec2);
 t_vec	vec_mult_scal(t_vec vec, double k);
 t_vec	vec_div(t_vec vec, double t);
+double	point_to_point(t_point p1, t_point p2);
+void	print_point(t_vec v);
 
 #endif

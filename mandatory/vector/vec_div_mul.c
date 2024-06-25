@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:55:15 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/10 16:11:40 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/24 15:55:49 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ t_vec	vec_mult_vec(t_vec vec1, t_vec vec2)
 
 t_vec	vec_mult_scal(t_vec vec, double k)
 {
-	vec.x *= k;
-	vec.y *= k;
-	vec.z *= k;
+	if (vec.x != 0)
+		vec.x *= k;
+	if (vec.y != 0)
+		vec.y *= k;
+	if (vec.z != 0)
+		vec.z *= k;
 	return (vec);
 }
 
