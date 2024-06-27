@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:19:57 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/27 19:39:06 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/27 20:27:42 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_camera	camera_init(t_canvas *canvas, t_point orig)
 	double		viewport_height;
 
 	viewport_height = 2.0;
-	focal_len = 0.5;
+	focal_len = 1;
 	cam.orig = orig;
 	cam.viewport_h = viewport_height;
 	cam.viewport_w = viewport_height * canvas->aspect_ratio;

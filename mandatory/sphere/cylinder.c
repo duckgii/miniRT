@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:15:08 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/27 20:26:29 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/27 21:07:33 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	get_one_point(t_cylinder *cy, t_ray *ray, t_hit_record *rec, int flag)
 	if (vec_inner_pro(ray->dir, cy->c_vec) == 0)
 		return (FALSE);
 	p = init_plane(r_center, vec_mult_scal(cy->c_vec, flag));
-	pl_t = vec_inner_pro(vec_minus_vec(r_center, ray->orig), p->plane_vec) /  vec_inner_pro(p->plane_vec, ray->dir);
-	//pl_t = (vec_inner_pro(p->plane_vec, ray->orig) + p->constant) / vec_inner_pro(p->plane_vec, ray->dir);
+	//pl_t = vec_inner_pro(vec_minus_vec(r_center, ray->orig), p->plane_vec) /  vec_inner_pro(p->plane_vec, ray->dir);
+	pl_t = -1 * (vec_inner_pro(p->plane_vec, ray->orig) + p->constant) / vec_inner_pro(p->plane_vec, ray->dir);
 	//pl_t = vec_inner_pro(r_center, cy->c_vec) / \
 		//(vec_inner_pro(ray->dir, cy->c_vec));
 	free(p);
