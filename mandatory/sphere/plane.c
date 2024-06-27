@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 01:04:42 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/21 19:57:18 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/06/27 20:13:47 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_plane	*init_plane(t_point point, t_vec normal)
 	pl = malloc(sizeof(t_plane));
 	if (pl == NULL)
 		exit(1);
-	pl->plane_vec = normal;
+	pl->plane_vec = vec_unit(normal);
 	pl->constant = vec_inner_pro(point, normal);
 	return (pl);
 }
