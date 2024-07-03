@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:56:55 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/07/03 17:26:51 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/07/03 17:37:48 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_scene	*scene_init(void)
 	//make_vec(0, 1, 0)), make_color(0, 0.5, 0.5));
 	//object_add(&world, object(SP, init_sphere(make_point(0, 1, -10), 2), \
 	//make_color(0, 0.5, 0)));
-	world = object(SY, init_cylinder(make_vec(0, 1, 1), make_point(0, 0, -10), 3, 4), \
+	world = object(SY, init_cylinder(make_vec(0, 1, 0), make_point(0, 0, -10), 10, 4), \
 	make_color(0, 0.5, 0.5));
 	//object_add(&world, object(SY, init_cylinder(make_vec(0, 1, 0), make_point(0, -6, -10), 6, 2), \
 	//make_color(0, 0.5, 0.5)));

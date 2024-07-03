@@ -6,15 +6,12 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:15:08 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/07/03 17:27:56 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/07/03 17:41:46 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere.h"
 #include "../ray/ray.h"
-
-int		iin_middle(t_cylinder *cy, t_ray *ray, t_hit_record *rec);
-t_ray	get_bottom_ray(t_cylinder *cy, t_ray *ray);
 
 t_cylinder	*init_cylinder(t_vec n, t_point center, \
 							double height, double radius)
@@ -74,7 +71,8 @@ int	get_one_point(t_cylinder *cy, t_ray *ray, t_hit_record *rec, int flag)
 	if (vec_inner_pro(ray->dir, cy->c_vec) == 0)
 		return (FALSE);
 	p = init_plane(r_center, vec_mult_scal(cy->c_vec, flag));
-	pl_t = -1 * (vec_inner_pro(p->plane_vec, ray->orig) + p->constant) / vec_inner_pro(p->plane_vec, ray->dir);
+	pl_t = -1 * (vec_inner_pro(p->plane_vec, ray->orig) + p->constant) / \
+				vec_inner_pro(p->plane_vec, ray->dir);
 	free(p);
 	pl_point = ray_at(ray, pl_t);
 	if (len_point(r_center, pl_point) > cy->radius)
@@ -96,6 +94,7 @@ double	len_point(t_point p1, t_point p2)
 			(p1.z - p2.z) * (p1.z - p2.z));
 	return (ret);
 }
+
 /*
 int	in_middle(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 {
@@ -151,7 +150,6 @@ int	in_middle(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 	t_point	sy_point;
 	t_point	r_center;
 	double	t;
-	double	t2;
 	t_ray	b_ray;
 
 	root = malloc(sizeof(int) * 2);
@@ -181,6 +179,9 @@ int	in_middle(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 	sy_point = vec_plus_vec(cy->center, vec_mult_scal(cy->c_vec, t));
 	if (point_to_point(sy_point, cy->center) >= cy->height / 2)
 		return (FALSE);
+	//원기둥은 여기서 그냥 높이별로 반지름을 줄여가면서 교점이 이 반지름에 들어오는지 확인하면 됨.
+	//if (point_to_point(rec->point, sy_point) >= cy->radius - cy->radius * (cy->height / 2) / point_to_point(sy_point, cy->center))
+	//	return (FALSE);
 	rec->normal = vec_unit(vec_minus_vec(rec->point, sy_point));
 	set_face_normal(ray, rec);
 	return (TRUE);
