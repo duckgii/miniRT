@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:03:54 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/06/24 13:34:50 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/07/03 15:10:57 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			get_one_point(t_cylinder *cy, t_ray *ray, \
 						t_hit_record *rec, int flag);
 double		len_point(t_point p1, t_point p2);
 t_ray		get_bottom_ray(t_cylinder *cy, t_ray *ray);
-int			discriment_cy(t_ray bot_ray, t_cylinder *cy, t_hit_record *rec, double *root);
+int			discriment_cy(t_ray bot_ray, t_cylinder *cy, double *root);
 int			in_middle(t_cylinder *cy, t_ray *ray, t_hit_record *rec);
 
 #endif
