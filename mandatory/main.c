@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:56:55 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/07/03 17:37:48 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/07/05 16:59:16 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ t_scene	*scene_init(void)
 		exit(1);
 	scene->canvas = canvas_init(WIDTH, HEIGHT);
 	scene->camera = camera_init(&scene->canvas, make_point(0, 0, 0));
-	//world = object(PL, init_plane(make_point(0, -9, 0), \
-	//make_vec(0, 1, 0)), make_color(0, 0.5, 0.5));
-	//object_add(&world, object(SP, init_sphere(make_point(0, 1, -10), 2), \
+	world = object(PL, init_plane(make_point(0, -9, 0), \
+	make_vec(0, 1, 0)), make_color(0, 0.5, 0.5));
+	//object_add(&world, object(SP, init_sphere(make_point(3, 0, -6), 2), \
 	//make_color(0, 0.5, 0)));
-	world = object(SY, init_cylinder(make_vec(0, 1, 0), make_point(0, 0, -10), 10, 4), \
-	make_color(0, 0.5, 0.5));
+	object_add(&world, object(SY, init_cylinder(make_vec(0, 1, 0), make_point(0, 0, -10), 10, 4), \
+	make_color(0, 0.5, 0.5)));
 	//object_add(&world, object(SY, init_cylinder(make_vec(0, 1, 0), make_point(0, -6, -10), 6, 2), \
 	//make_color(0, 0.5, 0.5)));
 	scene->world = world;
@@ -68,8 +68,10 @@ int	main(void)
 	vars.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	vars.addr = mlx_get_data_addr(vars.img, &vars.bits_per_pixel, \
 	&vars.line_length, &vars.endian);
-	prt_pixel(&vars);
+	prt_pixel(&vars);//9*9
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img, 0, 0);
+	//prt_pixel(&vars);/1*1
+	//mlx_put_image_to_window(vars.mlx, vars.win, vars.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, 17, 0, exit_hook, 0);
 	mlx_loop(vars.mlx);

@@ -6,7 +6,7 @@
 /*   By: yeoshin <yeoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:15:08 by yeoshin           #+#    #+#             */
-/*   Updated: 2024/07/03 17:41:46 by yeoshin          ###   ########.fr       */
+/*   Updated: 2024/07/03 18:00:16 by yeoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ int	in_middle(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 	//if (point_to_point(rec->point, sy_point) >= cy->radius - cy->radius * (cy->height / 2) / point_to_point(sy_point, cy->center))
 	//	return (FALSE);
 	rec->normal = vec_unit(vec_minus_vec(rec->point, sy_point));
+	// 이거 정규화 안 해줘서 색 이상하게 나왔었음
 	set_face_normal(ray, rec);
 	return (TRUE);
 }
